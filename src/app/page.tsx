@@ -67,7 +67,7 @@ export default function HomePage() {
     <div className="bg-[#fcfcfc] min-h-screen text-[#1A1A1A]">
       <main className="max-w-7xl mx-auto p-4 md:p-6 pb-24">
         
-        {/* HERO SECTION - CLEANED WITHOUT SEARCH */}
+        {/* HERO SECTION */}
         <div className="flex flex-col md:flex-row gap-6 mb-12 mt-4">
           <aside className="hidden md:block w-64 bg-white rounded-xl shadow-sm border border-slate-100 p-5 h-fit">
             <h3 className="font-bold mb-4 uppercase text-xs tracking-widest border-b pb-2">Categories</h3>
@@ -103,7 +103,16 @@ export default function HomePage() {
                 <div className="flex h-full">
                   {["/images/safety-gear.png", "/images/chef-coat.png", "/images/safety-worker.png", "/images/bedding-linen.png", "/images/hospitality-worker.png","/images/medical-scrub.png"].map((src, i) => (
                     <div key={i} className="flex-[0_0_100%] h-full relative flex items-end justify-center">
-                      <Image src={src} alt="Uniforms" fill className="object-contain object-bottom" unoptimized />
+                      <Image 
+                        src={src} 
+                        alt="Uniforms" 
+                        fill 
+                        className="object-contain object-bottom" 
+                        // Performance fixes:
+                        priority={i === 0} // Only first image is priority
+                        fetchPriority={i === 0 ? "high" : "low"}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
                     </div>
                   ))}
                 </div>
@@ -146,7 +155,13 @@ export default function HomePage() {
             ].map((item, i) => (
               <Link key={i} href={item.href} className="group relative h-[500px] rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm transition-all duration-500">
                 <div className="absolute inset-0 z-0">
-                  <Image src={item.img} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" unoptimized />
+                  <Image 
+                    src={item.img} 
+                    alt={item.title} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-1000" 
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10" />
                 </div>
                 <div className="absolute top-0 left-0 w-full p-10 z-20">
@@ -181,7 +196,13 @@ export default function HomePage() {
             {newArrivals.map((item, i) => (
               <div key={i} className="group relative">
                 <div className="relative h-[400px] w-full rounded-[2rem] overflow-hidden bg-slate-50 border border-slate-100 shadow-sm mb-4">
-                  <Image src={item.img} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
+                  <Image 
+                    src={item.img} 
+                    alt={item.name} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
                   <div className="absolute inset-0 bg-[#1A1A1A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                     <Link href="/contact">
                       <button className="bg-white text-[#1A1A1A] font-black py-3 px-6 rounded-xl uppercase text-[10px] tracking-widest flex items-center gap-2 hover:bg-[#F2A93B] hover:text-white transition-all shadow-xl">
@@ -220,7 +241,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative h-80 md:h-full min-h-[300px] rounded-2xl overflow-hidden shadow-inner bg-slate-50 border border-slate-100 group">
-            <Image src="/fabric-texture.webp" alt="Premium Fabric Texture" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+            <Image 
+                src="/fabric-texture.webp" 
+                alt="Premium Fabric Texture" 
+                fill 
+                className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                sizes="(max-width: 768px) 100vw, 50vw"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/20 to-transparent" />
           </div>
         </section>
@@ -236,7 +263,13 @@ export default function HomePage() {
               <div key={i} className="group bg-white rounded-3xl shadow-sm border border-slate-100 p-6 flex flex-col justify-between hover:shadow-lg hover:border-[#F2A93B] transition-all cursor-pointer">
                 <div>
                    <div className="aspect-[16/10] bg-[#F5F7FF] rounded-2xl mb-5 overflow-hidden relative">
-                     <Image src={cat.img} alt={cat.title} fill className="object-contain object-bottom transition-transform group-hover:scale-105" unoptimized />
+                     <Image 
+                        src={cat.img} 
+                        alt={cat.title} 
+                        fill 
+                        className="object-contain object-bottom transition-transform group-hover:scale-105" 
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                     />
                    </div>
                    <h3 className="text-lg font-black mb-2 uppercase text-[#1A1A1A]">{cat.title}</h3>
                    <p className="text-xs font-medium text-slate-500 mb-6 leading-relaxed">{cat.desc}</p>
@@ -264,7 +297,13 @@ export default function HomePage() {
             ].map((gift, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
                 <div className="aspect-[4/3] relative overflow-hidden bg-slate-100">
-                  <Image src={gift.img} alt={gift.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                  <Image 
+                    src={gift.img} 
+                    alt={gift.title} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
                 <div className="p-8">
                   <h3 className="text-xl font-black uppercase mb-1 group-hover:text-[#F2A93B] transition-colors">{gift.title}</h3>
