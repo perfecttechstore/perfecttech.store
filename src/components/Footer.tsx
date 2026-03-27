@@ -98,7 +98,7 @@ export default function Footer() {
               © 2026 Perfect Tech FZC LLC. All Rights Reserved.
             </p>
             <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest italic">
-              Quality Manufacturing & Wholesale · Sharjah, UAE
+              Quality Uniform Supplier Online · Sharjah, UAE
             </p>
           </div>
 
